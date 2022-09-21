@@ -134,11 +134,10 @@
         {%for product in products %}
         <div class="article  col-lg-12 col-12 mb-3 pe-lg-5 pe-3  py-3 rounded-2">
           {{product.name}}
-          <a href="{{product.email}}">{{product.email}}</a>
+          <a href="http://{{product.email}}">{{product.email}}</a>
           {{product.rate}}
           {{product.description}}
           {{product.category}}
-          <a href="#">link</a>
         </div>
           {%endfor %}
         <div class="article    col-12 mb-3 pe-lg-5 pe-3  py-3 rounded-2">
