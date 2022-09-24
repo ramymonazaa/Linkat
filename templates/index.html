@@ -86,10 +86,11 @@
             </a>
             <div class="collapse" id="{{cat.name}}">
               <ul class="btn-toggle-nav list-unstyled fw-normal ps-5 pb-1 small">
-                <li><a href="#" class="link-dark rounded">Overview</a></li>
-                <li><a href="#" class="link-dark rounded">Weekly</a></li>
-                <li><a href="#" class="link-dark rounded">Monthly</a></li>
-                <li><a href="#" class="link-dark rounded">Annually</a></li>
+                {% for product in products %}
+                {% if product.category == cat.name %}
+                <li><a href="#" class="link-dark rounded"><a href="http://{{product.email}}">{{product.name}}</a></a></li>
+                  {% endif %}
+                {% endfor %}
               </ul>
             </div>
           </li>
@@ -133,25 +134,13 @@
         <h2 class="mb-5 text-center">Top Article</h2>
         {%for product in products %}
         <div class="article  col-lg-12 col-12 mb-3 pe-lg-5 pe-3  py-3 rounded-2">
-          {{product.name}}
-          <a href="http://{{product.email}}">{{product.email}}</a>
-          {{product.rate}}
-          {{product.description}}
-          {{product.category}}
+          <h4><a href="http://{{product.email}}">{{product.name}}</a></h4>
+          <h4>{{product.rate}}</h4>
+          <h4>{{product.description}}</h4>
+          <h4>{{product.category}}</h4>
         </div>
           {%endfor %}
-        <div class="article    col-12 mb-3 pe-lg-5 pe-3  py-3 rounded-2">
-          <h4>Article heading</h4>
-          <a href="#">link</a>
-        </div>
-        <div class="article    col-12 mb-3 pe-lg-5 pe-3  py-3 rounded-2">
-          <h4>Article heading</h4>
-          <a href="#">link</a>
-        </div>
-        <div class="article    col-12 mb-3 pe-lg-5 pe-3  py-3 rounded-2">
-          <h4>Article heading</h4>
-          <a href="#">link</a>
-        </div>
+        
       </div>
     </div>
   </section>

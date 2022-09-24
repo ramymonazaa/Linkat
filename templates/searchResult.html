@@ -85,9 +85,11 @@
                         </a>
                         <div class="collapse" id="{{cat.name}}">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                <li><a href="#" class="link-dark rounded">Overview</a></li>
-                                <li><a href="#" class="link-dark rounded">Updates</a></li>
-                                <li><a href="#" class="link-dark rounded">Reports</a></li>
+                                {% for product in dash_products %}
+                                    {% if product.category == cat.name %}
+                                        <li><a href="#" class="link-dark rounded"><a href="http://{{product.email}}">{{product.name}}</a></a></li>
+                                  {% endif %}
+                                {% endfor %}
                             </ul>
                         </div>
                     </li>
@@ -120,12 +122,10 @@
                     <ul class="btn-toggle-nav list-unstyled fw-normal ps-3 pb-1 small">
                         {%for product in products %}
                         <div class="article  col-lg-12 col-12 mb-3 pe-lg-5 pe-3  py-3 rounded-2">
-                        <h4>{{product.name}}</h4>
-                        <a href="http://{{product.email}}">{{product.email}}</a>
-                        <h5>{{product.rate}}</h5>
-                        <h5>{{product.description}}</h5>
-                        <h5>{{product.category}}</h5>
-                        <a href="#">link</a>
+                        <a href="http://{{product.email}}">{{product.name}}</a>
+                        <h4>{{product.rate}}</h4>
+                        <h4>{{product.description}}</h4>
+                        <h4>{{product.category}}</h4>
                         </div>
                         {%endfor %}
                         <li><a href="#" class="link rounded">hesddds</a></li>
