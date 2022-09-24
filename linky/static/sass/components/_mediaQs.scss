@@ -29,17 +29,24 @@
             display: flex;
         }
     }
-    .change-theme-button {
-        position: absolute;
-        right: 38px;
-        top: 46px;
-        font-size: 23px;
-        opacity: 1;
-    }
+    // .change-theme-button {
+    //     position: absolute;
+    //     right: 38px;
+    //     top: 46px;
+    //     font-size: 23px;
+    //     opacity: 1;
+    // }
     // search result page
     .searchResult {
         li {
             width: 95%;
+        }
+    }
+}
+@media (min-width: 992px) {
+    .navbar {
+        form {
+            flex-basis: 60%;
         }
     }
 }
