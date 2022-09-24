@@ -527,13 +527,13 @@ p {
     font-size: 22px;
   }
 }
-.form-container {
+.registration .form-container {
   min-height: calc(100vh - 64px);
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../../assets/landing.jpg) no-repeat;
   background-size: cover;
   background-position: bottom;
 }
-.form-container .form {
+.registration .form-container .form {
   -o-border-image: linear-gradient(to right, #43b8fe, #e684ae) 30;
      border-image: linear-gradient(to right, #43b8fe, #e684ae) 30;
   box-shadow: radial-gradient(at 50% 0, black, transparent 70%), linear-gradient(0deg, black, transparent 50%) bottom;
@@ -541,8 +541,7 @@ p {
   box-shadow: 0 0 2px 2px #e684ae, 0 0 3px 2px #43b8fe;
   background: transparent;
 }
-
-.controls a {
+.registration .controls a {
   text-align: center;
   transition: 0.3s;
   -webkit-transition: 0.3s;
@@ -550,26 +549,22 @@ p {
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
 }
-
-.controls a.active,
-.controls a {
+.registration .controls a.active,
+.registration .controls a {
   transition: 0.3s;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
 }
-
-.controls a.active,
-.controls a:hover {
+.registration .controls a.active,
+.registration .controls a:hover {
   background: linear-gradient(to right, #e684ae, #e684ae);
 }
-
-.controls a {
+.registration .controls a {
   border-top: 4px solid #e684ae !important;
 }
-
-.form-control {
+.registration__input {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #e684ae;
@@ -581,26 +576,21 @@ p {
   -o-transition: 0.3s;
   padding: 0;
 }
-
-.form-group {
+.registration .form-group {
   margin-bottom: 2rem;
 }
-
-.form-control:focus {
+.registration .form-control:focus {
   background-color: transparent;
   color: white;
 }
-
-button[type=submit] {
+.registration button[type=submit] {
   background: #e684ae;
 }
-
-button[type=submit]:hover {
+.registration button[type=submit]:hover {
   background: #e684ae;
 }
-
-input:focus ~ label,
-input:not([value=""]) ~ label {
+.registration input:focus ~ label,
+.registration input:not([value=""]) ~ label {
   margin-bottom: 1.5rem;
   font-size: 13px;
   transition: 0.5s;
