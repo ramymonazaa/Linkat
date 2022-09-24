@@ -33,36 +33,35 @@
 </head>
 
 <body>
-  <nav class="nav" id="nav">
-    <div class="container-fluid p-0 py-1 px-3 m-0">
-      <nav class="navbar navbar-expand-lg ">
-        <div class="container-fluid position-relative">
-          <a class="navbar-brand" href="{% url 'home'%}">Linky</a>
-          <a class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon text-white"><i class="fas fa-bars"></i></span>
+  <!-- start nav section -->
+
+  <nav class="navbar navbar-expand-lg position-fixed px-3">
+    <div class="container-fluid position-relative ">
+      <a class="navbar-brand" href="#">Linky</a>
+      <a class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon text-white"><i class="fas fa-bars"></i></span>
+      </a>
+      <div class="collapse navbar-collapse  justify-content-end" id="navbarText">
+        <form class="d-flex " role="search" action="" method="POST">
+          {% csrf_token %}
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+          <input class="btn btn-outline-success" type="submit" value="Search">
+        </form>
+        <div class="button d-flex mt-3 mt-lg-0 justify-content-between">
+          <a href="registration.html" class="btn signIn ms-lg-2">
+            sign in
           </a>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mx-auto mb-lg-0">
-              <li class="nav-item d-lg-flex">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                <a class="nav-link " aria-current="page" href="#">Home</a>
-                <a class="nav-link " aria-current="page" href="#">Home</a>
-              </li>
-            </ul>
-            <form class="d-flex " role="search" action="" method="POST">
-              {% csrf_token %}
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
-              <input class="btn btn-outline-success" type="submit" value="Search">
-          </form>
-            <button class="ms-3 change-theme-button">
-              <i class=" change-theme fas fa-toggle-off"></i>
-            </button>
-          </div>
+
+          <button class="ms-3 change-theme-button">
+            <i class=" change-theme fas fa-toggle-off"></i>
+          </button>
         </div>
-      </nav>
+      </div>
     </div>
   </nav>
+
+  <!-- start nav section -->
 
   <main class="landing position-relative">
 
@@ -128,25 +127,38 @@
   <!-- end landing page -->
 
   <!-- start top article -->
-  <section class="topArticle py-5 " id="topArticle">
+  <section class="articleContainer col-12 col-lg-9 py-5 " id="topArticle">
     <div class="container">
       <div class="row d-flex justify-content-between">
         <h2 class="mb-5 text-center">Top Article</h2>
         {%for product in products %}
-        <div class="article  col-lg-12 col-12 mb-3 pe-lg-5 pe-3  py-3 rounded-2">
-<<<<<<< HEAD
+        <div class="article  col-lg-12 col-12 mb-3 px-lg-4 px-3  py-4 rounded-2">
+
           <h4><a href="http://{{product.email}}">{{product.name}}</a></h4>
-          <h4>{{product.rate}}</h4>
-          <h4>{{product.description}}</h4>
-          <h4>{{product.category}}</h4>
-=======
+         <p class="article__description">{{product.description}}</p>
+           <div class="article__bottom d-flex justify-content-between align-items-center">
+            <h5><span>#</span> {{product.category}}</h5>
+            <div class="rate  ">
+              <div class="percent" style="--num:85">
+                <div class="dot"></div>
+                <svg>
+                  <circle cx="25" cy="25" r="25"></circle>
+                  <circle cx="25" cy="25" r="25"></circle>
+                </svg>
+                <div class="number d-flex flex-column justify-content-center align-items-center">
+                  <p class="d-flex justify-content-center align-items-center"> {{product.rate}} <span>%</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {{product.name}}
           <a href="http://{{product.email}}">{{product.email}}</a>
           {{product.rate}}
           {{product.description}}
           {{product.category}}
           <a href="#">link</a>
->>>>>>> b7cce3264d18c4e1025127ae536bbc4f71ea31d7
+
         </div>
           {%endfor %}
         
