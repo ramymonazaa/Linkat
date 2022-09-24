@@ -134,10 +134,19 @@
         <h2 class="mb-5 text-center">Top Article</h2>
         {%for product in products %}
         <div class="article  col-lg-12 col-12 mb-3 pe-lg-5 pe-3  py-3 rounded-2">
+<<<<<<< HEAD
           <h4><a href="http://{{product.email}}">{{product.name}}</a></h4>
           <h4>{{product.rate}}</h4>
           <h4>{{product.description}}</h4>
           <h4>{{product.category}}</h4>
+=======
+          {{product.name}}
+          <a href="http://{{product.email}}">{{product.email}}</a>
+          {{product.rate}}
+          {{product.description}}
+          {{product.category}}
+          <a href="#">link</a>
+>>>>>>> b7cce3264d18c4e1025127ae536bbc4f71ea31d7
         </div>
           {%endfor %}
         
