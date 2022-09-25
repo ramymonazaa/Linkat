@@ -4,6 +4,7 @@
     width: 100%;
     position: relative;
     z-index: 99;
+
     text-align: center;
     h1 {
         color: #fff;
@@ -13,11 +14,15 @@
         font-weight: 600;
         color: #df86b2;
     }
-    button,
-    input[type="submit"] {
+
+    button {
         border: none;
         outline: none;
-        background: linear-gradient( to right, var(--gradient-1), var(--gradient-2));
+        background: linear-gradient(
+            to right,
+            var(--gradient-1),
+            var(--gradient-2)
+        );
         color: #fff;
         position: absolute;
         right: -31px;

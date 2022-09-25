@@ -1,7 +1,8 @@
 /*Google Fonts*/
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
 /*variables*/
 /*coolors*/
+@import url("https://fonts.googleapis.com/css2?family=Bellefair&family=Poppins:wght@200;300&display=swap");
 :root {
   --mainBgColor: #fff;
   --secondaryBgColor: #f9f9f9;
@@ -11,7 +12,6 @@
   --secondaryTextColor: #a7a6a7;
   --light-gray: #807878ee;
   --overlayBg: rgb(0 0 0/50%);
-  --rate: #ebe8e8;
 }
 
 .dark-theme {
@@ -21,7 +21,6 @@
   --secondaryTextColor: #485452;
   --light-gray: #979597;
   --overlayBg: rgb(0 0 0/80%);
-  --rate: #3c3a3a;
 }
 
 *,
@@ -73,7 +72,6 @@ h4,
 h5 {
   font-weight: bold;
   text-transform: capitalize;
-  line-height: 1.5;
 }
 
 h1 {
@@ -126,18 +124,15 @@ nav i.nav-link a:hover {
   -o-border-radius: 0.5rem;
 }
 
-.sideBarParent .sideBar .btn-toggle[aria-expanded=true] i, .sideBarParent .sideBar a:hover, .articleContainer .article__bottom > h5 span, .articleContainer .article__bottom > h5, .articleContainer h2 {
+.sideBarParent .sideBar .btn-toggle[aria-expanded=true] i, .sideBarParent .sideBar a:hover, .nav a {
   background: linear-gradient(to right, var(--gradient-1), var(--gradient-2));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 input:focus {
   box-shadow: none !important;
-}
-
-p {
-  line-height: 1.5;
 }
 
 .btn-outline-success {
@@ -157,133 +152,9 @@ p {
   font-size: 21px;
 }
 
-.btn,
-.btn:focus {
-  border: none;
-  outline: none;
-  box-shadow: none;
-}
-
-/* start top artice*/
-.articleContainer {
-  position: absolute;
-  right: 0;
-  background: var(--mainBgColor);
-  width: calc(100% - 300px);
-}
-@media (max-width: 991px) {
-  .articleContainer {
-    position: relative;
-    width: 100%;
-  }
-}
-.articleContainer .article {
-  background: var(--secondaryBgColor);
-  width: 95%;
-  margin: auto;
-}
-.articleContainer .article h4 {
-  color: var(--mainTextColor);
-}
-.articleContainer .article a {
-  color: var(--secondaryTextColor);
-}
-.articleContainer .article__description {
-  color: var(--light-gray);
-}
-.articleContainer .article__bottom > h5 {
-  font-weight: 600;
-  font-size: 15px;
-}
-.articleContainer .article__bottom > h5 span {
-  font-size: 13px;
-}
-.articleContainer .article__bottom .percent {
-  position: relative;
-  width: 60px;
-  height: 60px;
-}
-.articleContainer .article__bottom .percent .dot {
-  position: absolute;
-  inset: 5px;
-  z-index: 10;
-  transition: 0.3s;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -ms-transition: 0.3s;
-  -o-transition: 0.3s;
-  transform: rotate(calc(3.6deg * var(--num)));
-  -webkit-transform: rotate(calc(3.6deg * var(--num)));
-  -moz-transform: rotate(calc(3.6deg * var(--num)));
-  -ms-transform: rotate(calc(3.6deg * var(--num)));
-  -o-transform: rotate(calc(3.6deg * var(--num)));
-}
-.articleContainer .article__bottom .percent .dot::before {
-  content: "";
-  position: absolute;
-  top: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  background-color: var(--gradient-2);
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  box-shadow: 0 0 10px var(--gradient-2);
-}
-.articleContainer .article__bottom .percent svg {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  transform: rotate(270deg);
-  -webkit-transform: rotate(270deg);
-  -moz-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
-  -o-transform: rotate(270deg);
-}
-.articleContainer .article__bottom .percent svg circle {
-  width: 100%;
-  height: 100%;
-  fill: transparent;
-  stroke-width: 3;
-  stroke: var(--rate);
-  transform: translate(5px, 5px);
-  -webkit-transform: translate(5px, 5px);
-  -moz-transform: translate(5px, 5px);
-  -ms-transform: translate(5px, 5px);
-  -o-transform: translate(5px, 5px);
-}
-.articleContainer .article__bottom .percent svg circle:nth-child(2) {
-  stroke: var(--gradient-2);
-  transition: 0.3s;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -ms-transition: 0.3s;
-  -o-transition: 0.3s;
-  stroke-dasharray: 156;
-  stroke-dashoffset: calc(156 - 156 * var(--num) / 100);
-}
-.articleContainer .article__bottom .percent .number {
-  position: absolute;
-  inset: 0;
-}
-.articleContainer .article__bottom .percent .number P {
-  margin-bottom: 0;
-  font-weight: bold;
-  font-size: 14px;
-  color: var(--mainTextColor);
-}
-
-/* end top artice*/
-.navbar {
+.nav {
   background-color: var(--mainBgColor);
+  position: fixed;
   width: 100%;
   z-index: 11111;
   transition: background 0.3s;
@@ -292,30 +163,6 @@ p {
   -ms-transition: background 0.3s;
   -o-transition: background 0.3s;
 }
-.navbar .signIn {
-  color: var(--gradient-2);
-}
-
-/* ========= Start landing ========= */
-.landing {
-  height: 100vh;
-}
-.landing__content {
-  height: 100vh;
-  width: calc(100% - 300px);
-  right: 0;
-  position: absolute;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-position: bottom;
-  background: linear-gradient(0deg, var(--overlayBg), var(--overlayBg)), url(../../assets/landing.jpg) no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-/* ========= end landing ========= */
 .search {
   margin: auto;
   color: var(--mainTextColor);
@@ -359,12 +206,12 @@ p {
 .sideBarParent {
   position: relative;
   background-color: var(--secondaryBgColor);
-  height: calc(100vh - 56px);
+  height: calc(100vh - 64px);
   z-index: 1111;
   position: fixed;
   width: 300px;
   max-width: 100%;
-  top: 56px;
+  top: 64px;
   left: 0;
   transition: 0.3s;
   -webkit-transition: 0.3s;
@@ -463,8 +310,19 @@ p {
   color: var(--mainTextColor);
   z-index: 99;
 }
-.searchResult h2.error {
-  -webkit-text-fill-color: #eb3a4b;
+.searchResult li {
+  width: 80%;
+  background: var(--secondaryBgColor);
+  padding: 20px 15px;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.searchResult li a, .searchResult li:hover {
+  color: var(--mainTextColor);
 }
 
 @media (max-width: 991px) {
@@ -496,13 +354,15 @@ p {
   .sideBarParent .openDashbord {
     display: flex;
   }
+  .change-theme-button {
+    position: absolute;
+    right: 38px;
+    top: 46px;
+    font-size: 23px;
+    opacity: 1;
+  }
   .searchResult li {
     width: 95%;
-  }
-}
-@media (min-width: 992px) {
-  .navbar form {
-    flex-basis: 60%;
   }
 }
 @media (max-width: 765px) {
@@ -526,73 +386,4 @@ p {
   .search h3 {
     font-size: 22px;
   }
-}
-.registration .form-container {
-  min-height: calc(100vh - 64px);
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../../assets/landing.jpg) no-repeat;
-  background-size: cover;
-  background-position: bottom;
-}
-.registration .form-container .form {
-  -o-border-image: linear-gradient(to right, #43b8fe, #e684ae) 30;
-     border-image: linear-gradient(to right, #43b8fe, #e684ae) 30;
-  box-shadow: radial-gradient(at 50% 0, black, transparent 70%), linear-gradient(0deg, black, transparent 50%) bottom;
-  box-shadow: 0 0 6px 1px #43b8fe, 0 0 7px 2px #e684ae;
-  box-shadow: 0 0 2px 2px #e684ae, 0 0 3px 2px #43b8fe;
-  background: transparent;
-}
-.registration .controls a {
-  text-align: center;
-  transition: 0.3s;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -ms-transition: 0.3s;
-  -o-transition: 0.3s;
-}
-.registration .controls a.active,
-.registration .controls a {
-  transition: 0.3s;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -ms-transition: 0.3s;
-  -o-transition: 0.3s;
-}
-.registration .controls a.active,
-.registration .controls a:hover {
-  background: linear-gradient(to right, #e684ae, #e684ae);
-}
-.registration .controls a {
-  border-top: 4px solid #e684ae !important;
-}
-.registration__input {
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid #e684ae;
-  color: white;
-  transition: 0.3s;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -ms-transition: 0.3s;
-  -o-transition: 0.3s;
-  padding: 0;
-}
-.registration .form-group {
-  margin-bottom: 2rem;
-}
-.registration .form-control:focus {
-  background-color: transparent;
-  color: white;
-}
-.registration button[type=submit] {
-  background: #e684ae;
-}
-.registration button[type=submit]:hover {
-  background: #e684ae;
-}
-.registration input:focus ~ label,
-.registration input:not([value=""]) ~ label {
-  margin-bottom: 1.5rem;
-  font-size: 13px;
-  transition: 0.5s;
-  color: white !important;
-}/*# sourceMappingURL=general.css.map */
+}/*# sourceMappingURL=searchResultpr.css.map */

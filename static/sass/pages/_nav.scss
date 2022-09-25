@@ -1,6 +1,5 @@
-.nav {
+.navbar {
     background-color: var(--mainBgColor);
-    position: fixed;
     width: 100%;
     z-index: 11111;
     transition: background 0.3s;
@@ -8,7 +7,7 @@
     -moz-transition: background 0.3s;
     -ms-transition: background 0.3s;
     -o-transition: background 0.3s;
-    a {
-        @extend%gradient-text;
+    .signIn {
+        color: var(--gradient-2);
     }
 }
