@@ -49,7 +49,7 @@
           <input class="btn btn-outline-success" type="submit" value="Search">
         </form>
         <div class="button d-flex mt-3 mt-lg-0 justify-content-between">
-          <a href="registration.html" class="btn signIn ms-lg-2">
+          <a href="{% url 'register' %}" class="btn signIn ms-lg-2">
             sign in
           </a>
 
@@ -87,7 +87,7 @@
               <ul class="btn-toggle-nav list-unstyled fw-normal ps-5 pb-1 small">
                 {% for product in products %}
                 {% if product.category == cat.name %}
-                <li><a href="#" class="link-dark rounded"><a href="http://{{product.email}}">{{product.name}}</a></a></li>
+                <li><a href="#" class="link-dark rounded"><a href="{{product.email}}">{{product.name}}</a></a></li>
                   {% endif %}
                 {% endfor %}
               </ul>
@@ -134,7 +134,7 @@
         {%for product in products %}
         <div class="article  col-lg-12 col-12 mb-3 px-lg-4 px-3  py-4 rounded-2">
 
-          <h4><a href="http://{{product.email}}">{{product.name}}</a></h4>
+          <h4><a href="{{product.email}}">{{product.name}}</a></h4>
          <p class="article__description">{{product.description}}</p>
            <div class="article__bottom d-flex justify-content-between align-items-center">
             <h5><span>#</span> {{product.category}}</h5>
@@ -152,12 +152,7 @@
             </div>
           </div>
 
-          {{product.name}}
-          <a href="http://{{product.email}}">{{product.email}}</a>
-          {{product.rate}}
-          {{product.description}}
-          {{product.category}}
-          <a href="#">link</a>
+          
 
         </div>
           {%endfor %}

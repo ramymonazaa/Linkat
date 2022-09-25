@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from turtle import title
 # Create your models here.
@@ -13,7 +14,7 @@ class Product(models.Model):
     description=models.TextField(blank=True,null=True)
     rate=models.IntegerField(default=0,null=True)
     category=models.ForeignKey(Category,default=True,null=False,on_delete=models.CASCADE)
-    image= models.ImageField()
+    image= models.ImageField(upload_to='media/%y/%m/%d',null=True,blank=True)
     def __str__(self):
         return self.name
     class Meta:

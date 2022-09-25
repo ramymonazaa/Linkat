@@ -17,7 +17,7 @@ def home(request):
                 products1=[]
                 categories=Category.objects.all()
                 for product in Product.objects.all():
-                    if str(product.category).lower()==search.lower() or str(product.name).lower()==search.lower(): 
+                    if str(product.category).lower().find(search.lower())!=-1 or str(product.name).lower().find(search.lower())!=-1: 
                         products1.append(product)
                 if len(products1)==0:
                     found="F"
@@ -55,7 +55,9 @@ def home(request):
         products.append(pr1)
     categories=Category.objects.all()
     return render(request, 'index.html',{'products':products,'categories':categories})
-
+def register(request):
+    'sssssss'
+    return render(request, 'registration.html')
 def category_home_page(request,id_):
     products=[]
     for product in Product.objects.all():
