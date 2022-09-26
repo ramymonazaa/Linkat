@@ -68,9 +68,12 @@
                             <div class=" align-items-center">
                                 <div class="w-100">
                                     <h1 class="font-weight-bolder">Welcome</h1>
-                                    <form>
+                                    <form method="post" name='log-in'>
+                                        {%csrf_token %}
                                         <div class="form-group position-relative mt-2">
+                                            <input hidden name="type" value="log"></input>
                                             <input type="email"
+                                            name='email'
                                                 class="form-control registration__input rounded-0 text-white"
                                                 id="SI-EmailInput" required
                                                 onkeyup="this.setAttribute('value', this.value);" value="">
@@ -80,6 +83,7 @@
                                         </div>
                                         <div class="form-group position-relative">
                                             <input type="password"
+                                            name="password"
                                                 class="form-control registration__input rounded-0 text-white" value=""
                                                 id="SI-PasswordInput" required
                                                 onkeyup="this.setAttribute('value', this.value);" value="">
@@ -99,9 +103,11 @@
                             <div class="align-items-center">
                                 <div class="w-100">
                                     <h1 class="font-weight-bolder ">Get Started</h1>
-                                    <form>
+                                    <form method="post" >
+                                        {%csrf_token %}
                                         <div class="form-group position-relative mt-2">
-                                            <input type="text"
+                                            <input hidden name="type" value="register"></input>
+                                            <input type="text" name='username'
                                                 class="form-control  registration__input rounded-0 text-white"
                                                 id="SU-InputName" required
                                                 onkeyup="this.setAttribute('value', this.value);" value="">
@@ -112,6 +118,7 @@
                                 </div>
                                 <div class="form-group position-relative">
                                     <input type="email" class="form-control registration__input rounded-0 text-white"
+                                    name='email'
                                         id="SU-EmailInput" required onkeyup="this.setAttribute('value', this.value);"
                                         value="">
                                     <label for="SU-EmailInput"
@@ -119,14 +126,16 @@
                                 </div>
                                 <div class="form-group position-relative">
                                     <input type="password" class="form-control registration__input rounded-0 text-white"
-                                        id="SU-InputPassword" required onkeyup="this.setAttribute('value', this.value);"
+                                    name='password'    
+                                    id="SU-InputPassword" required onkeyup="this.setAttribute('value', this.value);"
                                         value="">
                                     <label for="SU-InputPassword"
                                         class="position-absolute bottom-0 text-white-50 left-0">Password</label>
                                 </div>
                                 <div class="form-group position-relative">
                                     <input type="password" class="form-control registration__input rounded-0 text-white"
-                                        id="SU-InputCoPassword" required
+                                    name='confirmpassword'       
+                                    id="SU-InputCoPassword" required
                                         onkeyup="this.setAttribute('value', this.value);" value="">
                                     <label for="SU-InputCoPassword"
                                         class="position-absolute bottom-0 text-white-50 left-0">Confirm Password</label>

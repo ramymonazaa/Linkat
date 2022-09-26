@@ -22,7 +22,12 @@ class Product(models.Model):
         ordering=['-rate','name']
 
 class User(models.Model):
+    username=models.CharField(max_length=100)
     email=models.CharField(max_length=100)
     password=models.CharField(max_length=12)
+    fav_products=models.ManyToManyField(Product,null=True)
+    num_visits=models.IntegerField(default=0,null=True)
+    points=models.IntegerField(default=0,null=True)
+    image= models.ImageField(upload_to='media/%y/%m/%d',null=True)
     def __str__(self):
-        return self.name
+        return self.username
