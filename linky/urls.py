@@ -19,12 +19,15 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from app1 import views
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views as v
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app1.urls')),
     path('home',views.home , name='home'), 
     path('search',views.search , name='search'), 
-    path('register',views.register , name='register'), 
+    path('register/',v.register,name='register'),
+    path('register/login',v.loginPage,name='login'),
+    path('logout/',v.logoutPage,name='logout'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 urlpatterns+=staticfiles_urlpatterns()
