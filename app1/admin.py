@@ -4,3 +4,5 @@ from .models import Category,Product,User
 admin.site.register(Category)
 admin.site.register(Product)
 admin.site.register(User)
+admin.site.site_header='Linky Adminstration'
+admin.site.site_title='Linky'
