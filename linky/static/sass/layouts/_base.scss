@@ -34,7 +34,7 @@ ul li {
 a {
     font-weight: bold;
     text-decoration: none;
-    color: var(--mainTextColor);
+    color: var(--gradient-1);
 }
 h1,
 h2,
@@ -50,15 +50,18 @@ h1 {
 }
 nav a,
 nav i.nav-link a {
-    color: var(--mainTextColor);
+    color: var(--gradient-1);
+    cursor: pointer;
 }
+
 nav a:hover,
 nav i.nav-link a:hover {
-    color: var(--mainTextColor);
+    color: var(--gradient-1);
 }
 
 .nav-item a {
     color: var(--mainTextColor);
+    cursor: pointer;
 }
 .nav-item a:hover {
     color: var(--mainTextColor);
@@ -74,9 +77,9 @@ nav i.nav-link a:hover {
 /* SCROLL BAR */
 ::-webkit-scrollbar {
     width: 0.5rem;
+    height: 0.5rem;
     border-radius: 0.5rem;
     background-color: var(--mainBgColor);
-
     -webkit-border-radius: 0.5rem;
     -moz-border-radius: 0.5rem;
     -ms-border-radius: 0.5rem;
@@ -92,10 +95,18 @@ nav i.nav-link a:hover {
         -moz-border-radius: 0.5rem;
         -ms-border-radius: 0.5rem;
         -o-border-radius: 0.5rem;
+        &:horizontal {
+            background: linear-gradient(
+                to right,
+                var(--gradient-1),
+                var(--gradient-2)
+            );
+        }
     }
 }
 %gradient-text {
-    background: linear-gradient(to right, var(--gradient-1), var(--gradient-2));
+    background: linear-gradient(var(--gradient-1), var(--gradient-2));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

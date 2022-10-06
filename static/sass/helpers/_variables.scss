@@ -14,13 +14,17 @@
     --light-gray: #807878ee;
     --overlayBg: rgb(0 0 0/50%);
     --rate: #ebe8e8;
+    --text-color: #222;
+    --transperentMainBgColor: #ffffffa1;
 }
 .dark-theme {
-    --mainBgColor: #121212;
-    --secondaryBgColor: #1a1919;
+    --mainBgColor: #18191a;
+    --secondaryBgColor: #242526;
     --mainTextColor: #fff;
-    --secondaryTextColor: #485452;
-    --light-gray: #979597;
+    --secondaryTextColor: #868e8d;
+    --light-gray: #ccc;
     --overlayBg: rgb(0 0 0/80%);
     --rate: #3c3a3a;
+    --text-color: #fff;
+    --transperentMainBgColor: #18191a4d;
 }

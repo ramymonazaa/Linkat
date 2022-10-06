@@ -25,9 +25,12 @@ class User(models.Model):
     username=models.CharField(max_length=100)
     email=models.CharField(max_length=100)
     password=models.CharField(max_length=12)
-    fav_products=models.ManyToManyField(Product,null=True)
-    num_visits=models.IntegerField(default=0,null=True)
-    points=models.IntegerField(default=0,null=True)
-    image= models.ImageField(upload_to='media/%y/%m/%d',null=True)
+    fav_products=models.ManyToManyField(Product,null=True,blank=True)
+    num_visits=models.IntegerField(default=0)
+    points=models.IntegerField(default=0)
+    image= models.ImageField(upload_to='media/%y/%m/%d',null=True,blank=True)
     def __str__(self):
         return self.username
+    class Meta:
+        verbose_name='user'
+        ordering=['-points','username']

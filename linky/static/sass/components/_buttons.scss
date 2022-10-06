@@ -13,7 +13,17 @@
         font-size: 21px;
     }
 }
-
+.sidebar .profile_change-theme {
+    background-color: var(--mainBgColor);
+    height: 50px;
+    span {
+        color: var(--light-gray);
+        font-weight: 600;
+    }
+}
+.sidebar.close .profile_change-theme {
+    background-color: transparent;
+}
 .btn,
 .btn:focus {
     border: none;

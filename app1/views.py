@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from django.shortcuts import render,HttpResponse
-from .models import Category,Product,User
+from django.shortcuts import render,HttpResponse,redirect
+from .models import Category,Product
+from .models import User as us
 from django.contrib.auth.models import User
 # Create your views here.
 signed="F"
@@ -59,9 +59,41 @@ def home(request):
         products.append(pr1)
     categories=Category.objects.all()
     return render(request, 'index.html',{'products':products,'categories':categories,'signed':signed})
+def profile(request):
+    products1=Product.objects.all()
+    products=[]
+    for product in products1:
+        pr1=pr()
+        pr1.category=str(product.category)
+        pr1.name=product.name
+        pr1.description=product.description
+        pr1.rate=product.rate
+        pr1.email=product.email
+        products.append(pr1)
+    categories=Category.objects.all()
+    user=us.objects.get(username=request.user)
+    index=1
+    for user1 in us.objects.all():
+        print(user1.points)
+        if user1==user:
+            break;
+        index=index+1
+    print(index)
+    return render(request, 'profile.html',{'user':user,'index':index,'products':products,'categories':categories,'signed':signed})
 
-
-
+def visit_action(request,name1):
+    product=Product.objects.get(name=name1)
+    product.rate=product.rate+1
+    link_address=product.email
+    # print(request.user.is_authenticated)
+    if request.user.is_authenticated:
+        user=us.objects.get(username=request.user)
+        user.points=user.points+2
+        user.num_visits=user.num_visits+1
+        # user.fav_products.add(product)  
+        user.save()
+    product.save()
+    return redirect(link_address);
 
 def category_home_page(request,id_):
     products=[]

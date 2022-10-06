@@ -29,5 +29,7 @@ urlpatterns = [
     path('register/',v.register,name='register'),
     path('register/login',v.loginPage,name='login'),
     path('logout/',v.logoutPage,name='logout'),
+    path('visit_action <str:name1>',views.visit_action,name='visit_action'), 
+
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 urlpatterns+=staticfiles_urlpatterns()
