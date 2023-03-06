@@ -1,0 +1,377 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Required meta tags -->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!------------>
+<!-- BOXICONS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<!-------------->
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{% static 'sass/bootstrap.min.css'%}">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<!---------------->
+<!-- CSS & icons -->
+<link rel="stylesheet" href="{% static 'normalize.css'%}" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="{% static 'sass/style/general.css'%}" />
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200&display=swap"
+    rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="{% static 'assets/logo.png'%}">
+
+
+<!-------------->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<title>Linky</title>
+
+</head>
+
+<body onload= "execute1('{{section}}')">
+    <!-- start nav section -->
+    <nav class="nav position-fixed profle__nav" id="nav">
+        <div class="container-fluid p-0 m-0">
+            <nav class="navbar navbar-expand-lg  ">
+                <div class="d-flex align-items-center  justify-content-between gap-4 w-100 px-3 position-relative">
+                    <div class="nav__right">
+                        <a class="fs-5 me-3">
+                            <i class="fas fa-bars" id="btn" onclick="toggleSidebar()"></i>
+                        </a>
+                        <a class="navbar-brand" href="{% url 'home'%}">Linky</a>
+                    </div>
+                    <div class="profile-information">
+                        <img src="{% static 'assets/avatar.png'%}" class="img-fluid me-2 profile-img " alt="profiel picture">
+                        <span class="text-capitalize">{{request.user}}</span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </nav>
+    <!-- end nav section -->
+    <!-- start sidebar section -->
+
+    <aside class="sidebar position-fixed pt-md-4 ">
+
+        <div class="sidebar__menu ">
+            <ul class="sidebar__list list-unstyled">
+                {% comment %} <li data-toggle="disabled">
+                    <form class="d-flex justify-content-between align-items-center" action="search" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" class="fas" name=="search" value="&#xf002;">
+                        <input type="search" data-toggle="disabled" class="rounded-1 pe-3" placeholder="Search">
+                    </form>
+                </li> {% endcomment %}
+                <li data-toggle="11" class="active">
+                    <a href="#"onclick="execute(11)">
+                        <i class="far fa-user"></i>
+                        <span class="links_name text-capitalize">Profile</span>
+                    </a>
+                </li>
+                <li data-toggle="22">
+                    <a href="#" onclick="execute(22)">
+                        <i class="far fa-heart" data-toggle="profile__saved"></i>
+                        <span class=" links_name text-capitalize">saved</span>
+
+                    </a>
+                </li>
+                <!--  -->
+                <li data-toggle="33">
+                    <a href="#" onclick="execute(33)">
+                        <i class="fad fa-upload"></i>
+                        <span class=" links_name text-capitalize">Contributions</span>
+                    </a>
+                </li>
+                <!--  -->
+                <!--  -->
+                <li data-toggle="44">
+                    <a href="#" onclick="execute(44)">
+                        <i class=" bx bx-cog "></i>
+                        <span class=" links_name text-capitalize">setting</span>
+                    </a>
+                </li>
+                <!--  -->
+            </ul>
+            <div class="sidebar__bottom d-flex flex-column align-items-start gap-3">
+
+                <a href="{% url 'logout' %}">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="links_name">logout</span>
+                </a>
+
+                <button
+                    class="d-flex justify-content-around rounded-1 align-items-center w-100 change-theme-button profile_change-theme">
+                    <span class="links_name">Dark mode</span>
+                    <i class=" change-theme fas fa-toggle-off"></i>
+                </button>
+
+            </div>
+        </div>
+    </aside>
+
+    <!-- end sidebar section -->
+    <!-- start profile section -->
+    <div class="profile position-absolute pb-3">
+        <div class="profile__container  container pt-3">
+            {% comment %} <div class="container-fluid active  profile__user p-0 profile__content"> {% endcomment %}
+                <div id="11" style="display: none" class="container-fluid active  profile__user p-0 profile__content">
+                <div class="container-fluid d-flex justify-content-between mb-5 align-items-center">
+                    <!-- start welcome message -->
+                    <!-- start heading message -->
+                    <div
+                        class="profile_heading col-12 mt-3 d-flex justify-content-center flex-column flex-md-row text-center text-md-start align-items-center">
+                        <figure class="col-md-2 me-3 col-12 ">
+                            <img src="{% static 'assets/avatar.png'%}" class="img-fluid" alt="personal img">
+                        </figure>
+                        <div class="profile_heading-details  col-md-9 col-lg-7 col-12">
+                            <h2 class="text-uppercase fs-3">{{request.user}}</h2>
+                            {% comment %} <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus at deserunt,
+                                repudiandae cumque harum veritatis?</p> {% endcomment %}
+                        </div>
+                    </div>
+
+                    <!-- end heading message -->
+                    <!-- end welcome message -->
+                </div>
+                <!-- ========== start Dashboard ========== -->
+                <div class="profile__point mb-5 mb-sm-0">
+                    <div class="profile__point-container row gap-3">
+                        <div class=" col-lg-4 col-sm-5 col-12 text-center p-4 ">
+                            <i class="far fa-chart-bar mb-3 fs-3 icon"></i>
+                            <h2 class="fs-4 text-capitalize">points</h2>
+                            <span>{{user.points}}</span>
+                        </div>
+                        <div class="col-lg-4 col-sm-5 col-12 text-center p-4 ">
+                            <i class="far fa-eye mb-3 fs-3 icon"></i>
+                            <h2 class="fs-4 text-capitalize">visited</h2>
+                            <span>{{user.num_visits}}</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- ========== End Dashboard ========== -->
+                <!-- ========== start Rate ========== -->
+                <div class="container profile__rate">
+                    <h3 class="text-capitalize fs-4 mb-md-5 mb-4 ">Leaderboard</h3>
+                    <div class="row ">
+                        <div class="table-responsive-sm">
+                            <table class="table  ">
+                                <thead>
+                                    <tr>
+                                        <th class="text-capitalize" scope="col">ranking</th>
+                                        <th class="text-capitalize" scope="col">Member</th>
+                                        <th class="text-capitalize" scope="col">score</th>
+                                        <th class="text-capitalize" scope="col">Handle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th style="color:var(--gradient-1)" scope="row">{{index}}</th>
+                                        <td>{{user.username}}</td>
+                                        <td>{{user.points}}</td>
+                                        <td>{{user.email}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- ========== End Rate ========== -->
+            </div>
+            <!-- ========== start saved page ========== -->
+            <div id ="22" class="container  ms-lg-3 profile__saved  favorite profile__content">
+                <div class="heading mb-5 mt-3">
+                    <h2 class="text-capitalize m-auto">Saved items</h2>
+                </div>
+                <!-- ==== When user don't have saved items -->
+                {% comment %} <div class="row">
+                    <div class="empty-saved col-12 d-flex align-items-center ">
+
+                        <p class="text-capitalize text-center ">
+                            you don't have items yet
+                        </p>
+
+                    </div> {% endcomment %}
+                <!-- ==== When user have saved items -->
+                <div class="row  gap-4">
+
+                    {% for product in fav %}
+                    <div class="saved p-4 col-lg-5  col-12">
+                        <h3 class="text-capitalize fs-5 mb-3"> <a href="{% url 'visit_action' name1=product.name%}">{{product.name}}</a></h3>
+                        <p class="mb-5">
+                            {{product.description}}
+                        </p>
+                        <div class="saved__information  d-flex justify-content-between align-items-center">
+                            <span class="saved__information-categroy">{{product.category}}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- ========== end saved page ========== -->
+            {% comment %} <div id= class="container  ms-lg-3 profile__contribution  contribution    profile__content"> {% endcomment %}
+                <div id="33" style="display: none"class="container  ms-lg-3 profile__contribution  contribution    profile__content">
+                <div class="heading m-md-3 m-auto col-md-10">
+                    <h2 class="text-capitalize me-auto">My Contributions</h2>
+
+                    <div class="CntHeader row d-flex mx-0 my-3 text-bold ">
+                        <h5 class="ms-auto col-6">Title</h5>
+                        <h5 class="col-6 text-end">Status</h5>
+                    </div>
+                    <hr>
+                    <ul class="p-0  contribution__links ">
+                        {% for product in products %}
+                        {% if product.state == 1%}
+                        <li class="accepted d-flex"><span class="ms-0 col-6" title="3/11/2022">{{product.name}}
+                                </span> <span class="ms-auto text-end col-6"><a href="{% url 'view_item' search=product.name%}" style="color: unset"><i class="fas fa-eye mx-3"
+                                    title="View"></i></a><span>Accepted</span></span>
+                        </li>
+                        <hr>
+                        {% elif product.state == 2%}
+                        <li title="3/11/2022" class="pending d-flex"><span class="ms-0 col-6">{{product.name}}
+                                </span> <span class="ms-auto text-end col-6">
+                                    <a href="{% url 'delete_item' name=product.name%}" style="color: unset">
+                                        <i title="Cancel" class="far fa-times-circle"></i>
+                                    </a>
+                                        <i onclick="openPopup('{{product.name}}','{{product.email}}')" title="Edit"class="far fa-edit mx-3"></i>
+                                        <span>Pending</span></span>
+                        </li>
+                        <hr>
+                        {% else %}
+                        <li title="3/11/2022" class="rejected d-flex"><span class="ms-0 col-6">{{product.name}}
+                                </span> <span class="ms-auto text-end col-6 ">
+                                    <a href="{% url 'delete_item' name=product.name%}" style="color: unset"><i title="Remove"
+                                    class="fas fa-trash mx-3"></a></i>
+                                <span>Rejected</span></span>
+                        </li>
+                        <hr>
+                        {%endif%}
+                        {%endfor%}
+                    </ul>
+                </div>
+            </div>
+            <!-- End Contribution -->
+            <!-- ========== start  setting ========== -->
+            <div id="44" class="container  ms-lg-3 profile__setting    profile__content">
+                <div class="heading mb-5 mt-3">
+                    <h2 class="text-capitalize me-auto">Personal information </h2>
+                </div>
+                <form action="update_user_info" method="post">
+                    {% csrf_token %}
+                    {% for message in messages %}
+                    <span style="color: red">{{ message }}</span>
+                    {% endfor %}
+                    <div class="form-group row">
+                        <div class="picture  col-3 m-auto">
+                            <div class="avatar-upload">
+                                <div class="avatar-edit">
+                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                    <label for="imageUpload"><i class='bx bx-pencil'></i></label>
+                                </div>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview"
+                                        style="background-image: url('https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=740&t=st=1665856654~exp=1665857254~hmac=ade438076f6559c62ef63be0ce32fb92218c83722f3312dad9f4a1a4588ba010');">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info py-3 py-md-5  formProfile">
+                            <div class="form-group row m-md-2 mb-2   ">
+                                <div class="col-sm-9 m-auto">
+                                    <input type="text" class="form-control" id="inputName" name="name" placeholder="Name" value="{{request.user}}">
+                                </div>
+                            </div>
+                            <div class="form-group row m-md-2 mb-2   ">
+                                <div class="col-sm-9 m-auto">
+                                    <input type="text" class="form-control" id="staticEmail" name="email" placeholder="Email"
+                                        value="{{user.email}}">
+                                </div>
+                            </div>
+                            <div class="form-group row m-md-2 mb-2   ">
+                                <div class="col-sm-9 m-auto">
+                                    <input type="password" class="form-control" id="inputPassword" name="old_password"
+                                        placeholder="Old Password" value="">
+                                </div>
+                            </div>
+                            <div class="form-group row m-md-2 mb-2   ">
+                                <div class="col-sm-9 m-auto">
+                                    <input type="password" class="form-control" id="inputPassword" name="password1"
+                                        placeholder="New Password" value="">
+                                </div>
+                            </div>
+                            <div class="form-group row m-md-2 mb-2   ">
+                                <div class="col-sm-9 m-auto">
+                                    <input type="password" class="form-control" id="inputPassword" name="password2"
+                                        placeholder="Confirm Password" value="">
+                                </div>
+                            </div>
+                            <div class="form-group row m-md-2 mb-2    mt-3 ">
+                                <div class="col-sm-9 m-auto setting-control">
+
+                                    <input class="btn form-control py-2 " type="submit" value="Cancel">
+                                    <input class="btn form-control py-2" type="submit" value="Send">
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <!-- ========== end  setting ========== -->
+         
+        </div>
+
+    </div>
+    <!-- end profile section -->
+  <!-- Add new Article -->
+<section class="position-fixed newArticle">
+    <form class="position-relative newArticle-form" method="post" action="add_article">
+      {%csrf_token %}
+      <i class="fas fa-times close-popup" onclick="closePopup()"></i>
+      <div class="form-group">
+        <label for="title">URL</label>
+        <input id="url" type="text" class="form-control" id="title" name="url">
+      </div>
+      <div class="form-group">
+        <label for="title">name</label>
+        <input id="name" type="text" class="form-control" id="title" name="name">
+      </div>
+      <div class="form-group">
+        <label for="description">description</label>
+        <textarea id="description" class="form-control" id="description" rows="3" name="description"></textarea>
+      </div>
+      <label for="category">categroy</label>
+      <select class="form-control" id="category" name="category"> 
+        {% for category in categories %}
+          <option>{{category.name}}</option>
+        {% endfor %}
+      </select>
+      </div>
+      <div class="newArticle-form-submit">
+        <textarea id="state" name="state" hidden></textarea>
+        <button type="submit" class="btn newArticleBtn me-auto ">Submit</button>
+      </div>
+    </form>
+  </section>
+  <!-- Add new Article -->
+    <!-- Optional JavaScript -->
+    <script src="{% static 'js/darkThem.js'%}"></script>
+    <script src="{% static 'js/profile.js'%}"></script>
+    <script src="{% static 'js/popup.js'%}"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

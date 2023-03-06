@@ -1,0 +1,8 @@
+from django.contrib import admin
+from .models import Category,Product,User
+# Register your models here.
+admin.site.register(Category)
+admin.site.register(Product)
+admin.site.register(User)
+admin.site.site_header='Linky Adminstration'
+admin.site.site_title='Linky'

@@ -1,0 +1,232 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<!-- Required meta tags -->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!------------>
+<!-- BOXICONS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<!-------------->
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{% static 'sass/bootstrap.min.css' %}">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<!---------------->
+<!-- CSS & icons -->
+<link rel="stylesheet" href="{% static 'normalize.css' %}" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="{% static 'sass/style/general.css' %}" />
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200&display=swap"
+    rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="{%static 'assets/logo.png'%}">
+
+
+<!-------------->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<title>Linky</title>
+</head>
+
+<body>
+    <!-- start nav section -->
+
+    <nav class="navbar navbar-expand-lg position-fixed px-3">
+        <div class="container-fluid position-relative ">
+            <a class="navbar-brand" href="{% url 'home'%}">Linky</a>
+            <a class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-white"><i class="fas fa-bars"></i></span>
+            </a>
+            <div class="collapse navbar-collapse  justify-content-end" id="navbarText">
+                <form class="d-flex " role="search" action="search" method="POST">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                    <input class="btn btn-outline-success" type="submit" value="Search">
+                </form>
+                {% if request.user.is_authenticated%}
+        <ul class="navbar-nav mx-lg-3">
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle text-capitalize" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="min-width: 120px; text-align: center;">
+              {{request.user}}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item " onclick="openPopup1()" href="#">
+                  <i class="fal fa-plus me-1"></i>
+                  <span class="text-capitalize">add article</span>
+                </a></li>
+              <li><a class="dropdown-item" href="{% url 'profile' %}">
+                  <i class="fas fa-user me-1"></i>
+                  <span class="text-capitalize">Profile</span>
+                </a></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">
+                  <i class="fas fa-sign-out-alt me-1"></i>
+                  <span>logout</span></a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        
+        {% else %}
+        <div class="button d-flex mt-3 mt-lg-0 justify-content-between">
+          <a href="{% url 'register' %}" class="btn signIn ms-lg-2">
+            sign in
+          </a>
+
+          
+        </div>
+        {% endif %}
+        <button class="position-fixed change-theme-button">
+          <i class=" change-theme fas fa-toggle-off"></i>
+        </button>
+    </nav>
+
+            <!-- end dashboard -->
+        <!-- start search result section -->
+
+    <div class="container-fluid landing position-relative">
+
+        <div class=" ps-md-4  sideBarParent">
+            <button class="openDashbord">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="sideBar pt-5 ">
+                <a href="/"
+                    class=" sideBar__heading d-flex content align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                    <i class='bx bx-book-content me-2 fs-3'></i>
+                    <span class="fs-5 fw-semibold">Content</span>
+                </a>
+                <ul class="list-unstyled border-bottom ps-0">
+                    {%for cat in categories %}
+                    <li class="mb-1">
+                        <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                            data-bs-target="#{{cat.name}}" aria-expanded="false">
+                            <i class='bx bx-chevron-right'></i> {{cat.name}}
+                        </a>
+                        <div class="collapse" id="{{cat.name}}">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                                {% for product in dash_products %}
+                                    {% if product.category == cat.name %}
+                                        <li><a href="#" class="link-dark rounded"><a href="{% url 'visit_action' name1=product.name%}">{{product.name}}</a></a></li>
+                                  {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    
+                    
+                </ul>
+                <a class="sideBar__heading btn btn-toggle align-items-center rounded collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                    <i class='bx bx-chevron-right'></i> Team
+                </a>
+                <div class="collapse" id="account-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal ps-5 pb-1 small">
+                        <li><a href="#" class="link-dark rounded">...</a></li>
+                        <li><a href="#" class="link-dark rounded">...</a></li>
+                        <li><a href="#" class="link-dark rounded">...</a></li>
+                        <li><a href="#" class="link-dark rounded">...</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+         <div class="searchResult articleContainer col-12">
+            <div class="container">
+                {% if found == "F" %}
+                <h2 class="title ms-md-3 ms-lg-3 w-75 py-5">not found</h2>
+                {% else %}
+                <h2 class="title ms-md-3 ms-lg-3 w-75 py-5">WEB</h2>
+                {%endif%}
+                    <ul class="btn-toggle-nav list-unstyled fw-normal ps-3 pb-1 small">
+                      {%for product in products %}
+                      <div class="article  col-lg-12 col-12 mb-3 px-lg-4 px-3  py-4 rounded-2">
+                        <div class="row mb-4">
+                          <div class="article__content col-11">
+                            <h4><a href="{% url 'visit_action' name1=product.name%}">{{product.name}}</a></h4>
+                            <p class="article__description">{{product.description}}</p>
+                          </div>
+                          <div class="article__favorite col-1 d-flex justify-content-center">
+                            <a>
+                              <i id="1" class="fal fa-heart addToFavorite" onclick="clicked(1)"></i>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="article__bottom d-flex justify-content-between align-items-center">
+                          <h5><span>#</span> {{product.category}}</h5>
+                          <div class="rate  ">
+                            <div class="percent" style="--num:{{product.rate}}">
+                              <div class="dot"></div>
+                              <svg>
+                                <circle cx="25" cy="25" r="25"></circle>
+                                <circle cx="25" cy="25" r="25"></circle>
+                              </svg>
+                              <div class="number d-flex flex-column justify-content-center align-items-center">
+                                <p class="d-flex justify-content-center align-items-center"> {{product.rate}} <span>%</span></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+              
+                      </div>
+              
+                      
+                        {%endfor %}
+            </div>
+        </div>
+   <!-- end search result section -->
+    </div>
+
+   
+
+
+<!-- Add new Article -->
+<section class="position-fixed newArticle">
+  <form class="position-relative newArticle-form" method="post" action="add_article">
+    {%csrf_token %}
+    <i class="fas fa-times close-popup" onclick="closePopup()"></i>
+    <div class="form-group">
+      <label for="title">URL</label>
+      <input type="text" class="form-control" id="title" name="url">
+    </div>
+    <div class="form-group">
+      <label for="title">name</label>
+      <input type="text" class="form-control" id="title" name="name">
+    </div>
+    <div class="form-group">
+      <label for="description">description</label>
+      <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+    </div>
+    <label for="category">categroy</label>
+    <select class="form-control" id="category" name="category"> 
+      {% for category in categories %}
+        <option>{{category.name}}</option>
+      {% endfor %}
+    </select>
+    </div>
+    <div class="newArticle-form-submit">
+      <textarea id="state" name="state" value="new" hidden></textarea>
+      <button type="submit" class="btn newArticleBtn me-auto ">Submit</button>
+    </div>
+  </form>
+</section>
+  <!-- Add new Article -->
+    <!-- Optional JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+    <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
+  <script src="{% static 'js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'js/addToFavorite.js'%}"></script>
+  <script src="{% static 'js/main.js'%}"></script>
+  <script src="{% static 'js/popup.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
